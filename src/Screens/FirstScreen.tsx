@@ -24,7 +24,6 @@ const FirstScreen = ({navigation, route}: {navigation: any; route: any}) => {
     ];
   };
 
-  const getStates = () => ['State 1', 'State 2', 'State 3', 'State 4', 'State 5'];
 
   const methodsOfVerification = getMethodsOfVerification();
 
@@ -50,14 +49,13 @@ const FirstScreen = ({navigation, route}: {navigation: any; route: any}) => {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
-        <Button title="Go Back" onPress={() => navigation.goBack()} color="#841584" />
         <Header />
-        <CustomInput type="phone" onChangeText={setPhone} />
-        <CustomInput type="email" onChangeText={setEmail} />
+        <CustomInput type="phone" onValueChange={setPhone} />
+        <CustomInput type="email" onValueChange={setEmail} />
         <StateSelection
           title={'State'}
           selectedState={selectedState}
-          onPress={() => navigation.navigate('StateModal', {setSelectedState, getStates})}
+          onPress={() => navigation.navigate('StateModal', {setSelectedState})}
         />
         <RadioGroupWithTitle
           title="Verification Method"

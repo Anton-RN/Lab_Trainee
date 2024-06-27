@@ -3,40 +3,43 @@ import {View, Text, TextInput, StyleSheet, TextInputProps, KeyboardTypeOptions} 
 
 interface CustomInputProps extends TextInputProps {
   type: 'phone' | 'email';
-  onChangeText?: (text: string) => void;
+  onValueChange?: (text: string) => void;
 }
 
-const CustomInput = ({type, onChangeText, ...rest}: CustomInputProps) => {
-  const [value, setValue] = useState('');
-
-  let title = '';
-  let placeholder = '';
-  let keyboardType: KeyboardTypeOptions = 'default';
-
+const getInputAttributes = (type: 'phone' | 'email') => {
   switch (type) {
     case 'phone':
-      title = 'Phone Number';
-      placeholder = 'Enter phone number...';
-      keyboardType = 'phone-pad';
-      break;
+      return {
+        title: 'Phone Number',
+        placeholder: 'Enter phone number...',
+        keyboardType: 'phone-pad' as KeyboardTypeOptions,
+      };
     case 'email':
-      title = 'Email Address';
-      placeholder = 'Enter email...';
-      keyboardType = 'email-address';
-      break;
+      return {
+        title: 'Email Address',
+        placeholder: 'Enter email...',
+        keyboardType: 'email-address' as KeyboardTypeOptions,
+      };
     default:
-      title = 'Input';
-      placeholder = 'Enter text...';
-      keyboardType = 'default';
-      break;
+      return {
+        title: 'Input',
+        placeholder: 'Enter text...',
+        keyboardType: 'default' as KeyboardTypeOptions,
+      };
   }
+};
+
+const CustomInput = ({type, onValueChange, ...rest}: CustomInputProps) => {
+  const [value, setValue] = useState('');
+
+  const {title, placeholder, keyboardType} = getInputAttributes(type);
 
   const getName = () => {
     return 'Joe Done';
   };
 
   const handleBlur = () => {
-    onChangeText && onChangeText(value);
+    onValueChange?.(value);
   };
 
   return (

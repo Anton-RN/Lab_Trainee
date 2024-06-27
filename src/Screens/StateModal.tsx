@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity, TextInput} from 'react-native';
 
-const StateModalScreen = ({navigation, route}: {navigation: any; route: any}) => {
-  const {setSelectedState, getStates} = route.params;
+const StateModal = ({navigation, route}: {navigation: any; route: any}) => {
+  const {setSelectedState, listOfState} = route.params;
   const [search, setSearch] = useState('');
   const [filteredStates, setFilteredStates] = useState<string[]>(getStates);
 
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StateModalScreen;
+export default StateModal;

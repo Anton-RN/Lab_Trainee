@@ -11,9 +11,14 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import FirstScreen from './src/Screens/FirstScreen';
 import HomeScreen from './src/Screens/HomeScreen';
-import StateModalScreen from './src/Screens/StateModalScreen';
+import StateModal from './src/Screens/StateModal';
 
-const Stack = createStackNavigator();
+export type StackParamList = {
+  Home: undefined;
+  FirstScreen: undefined;
+  StateModal: {listOfState: string[]} | undefined;
+};
+const Stack = createStackNavigator<StackParamList>();
 
 function App() {
   return (
@@ -24,7 +29,7 @@ function App() {
           <Stack.Screen name="FirstScreen" component={FirstScreen} />
         </Stack.Group>
         <Stack.Group screenOptions={{presentation: 'modal'}}>
-          <Stack.Screen name="StateModal" component={StateModalScreen} />
+          <Stack.Screen name="StateModal" component={StateModal} />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>

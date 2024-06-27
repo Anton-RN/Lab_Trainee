@@ -6,21 +6,25 @@
  */
 
 import React from 'react';
-import type { PropsWithChildren } from 'react';
-import { Button, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
-
+import type {PropsWithChildren} from 'react';
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions
-} from 'react-native/Libraries/NewAppScreen';
-import Section from '../Components/Section';
+  Button,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {StackParamList} from '../../App';
+import type {StackScreenProps} from '@react-navigation/stack';
 
+type ProfileScreenNavigationProp = StackScreenProps<StackParamList, 'Home'>;
 
-function HomeScreen({ navigation }: { navigation: any }) {
+function HomeScreen({navigation}: ProfileScreenNavigationProp) {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -33,9 +37,7 @@ function HomeScreen({ navigation }: { navigation: any }) {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle}>
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -54,20 +56,20 @@ function HomeScreen({ navigation }: { navigation: any }) {
 const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
-    paddingHorizontal: 24
+    paddingHorizontal: 24,
   },
   sectionTitle: {
     fontSize: 24,
-    fontWeight: '600'
+    fontWeight: '600',
   },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
-    fontWeight: '400'
+    fontWeight: '400',
   },
   highlight: {
-    fontWeight: '700'
-  }
+    fontWeight: '700',
+  },
 });
 
 export default HomeScreen;
